@@ -12,6 +12,12 @@ const Layout = () => {
             <Link to="/LeaderBoard">LeaderBoard</Link>
           </li>
           <li>
+            <Link to="/SignUp">SignUp</Link>
+          </li>
+          <li>
+            <Link to="/SignIn">SignIn</Link>
+          </li>
+          <li>
             <Link to="/contact">Contact</Link>
           </li>
         </ul>

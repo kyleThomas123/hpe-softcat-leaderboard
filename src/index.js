@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from "./pages/Layout";
 import LeaderBoard from "./pages/LeaderBoard";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
 import reportWebVitals from './reportWebVitals';
 
@@ -14,6 +16,8 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="LeaderBoard" element={<LeaderBoard />} />
+          <Route path="SignUp" element={<SignUp />} />
+          <Route path="SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
