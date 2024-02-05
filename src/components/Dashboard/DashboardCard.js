@@ -14,7 +14,7 @@ export const DashboardCard = ({ card, ...rest }) => {
           {title}
         </Heading>
         <Text color={descriptionColor}>{description}</Text>
-        {typeof cta === 'string' ? <Link to="/leaderboard"><Button label={cta} secondary /></Link> : cta}
+        {typeof cta === 'string' ? <Link to="/hpe-softcat-leaderboard/leaderboard"><Button label={cta} secondary /></Link> : cta}
       </CardBody>
     </Card>
   );

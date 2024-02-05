@@ -20,7 +20,7 @@ export const HeaderNavigationExample = () => {
         vertical: 'small',
       }}
     >
-      <AppIdentity title="SoftCat Leaderboard" brand="hpe" />
+      <AppIdentity title="SoftCat Leaderboard" brand="hpe" href="/hpe-softcat-leaderboard/"/>
       {user && <HeaderNav />}
     </Header>
   );
