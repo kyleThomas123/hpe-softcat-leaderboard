@@ -8,6 +8,8 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
 import reportWebVitals from './reportWebVitals';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 export default function App() {
   return (
@@ -31,6 +33,26 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBEArowSS-HRNf2WdVqrz967p9Br0-i2BA",
+  authDomain: "softcatleaderboard.firebaseapp.com",
+  projectId: "softcatleaderboard",
+  storageBucket: "softcatleaderboard.appspot.com",
+  messagingSenderId: "385195349354",
+  appId: "1:385195349354:web:02a7729acdee798edd4113",
+  measurementId: "G-0701CNK6XT"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line
+const analytics = getAnalytics(app);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
