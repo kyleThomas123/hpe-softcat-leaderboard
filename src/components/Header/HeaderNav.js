@@ -10,18 +10,20 @@ import {
   Text,
 } from 'grommet';
 import { HelpOption, HomeRounded, User } from 'grommet-icons';
-import { UserContext } from './UserContext';
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 
+
 export const HeaderNav = () => {
   const size = useContext(ResponsiveContext);
-  const { user } = useContext(UserContext);
+  const auth = getAuth();
+  const user = auth.currentUser;
   const [open, setOpen] = useState();
+  const navigate = useNavigate();
 
-  return user ? (
-    <Nav align="center" direction="row" gap="small">
+  if (user) {
+    return <Nav align="center" direction="row" gap="small">
       {!['xsmall', 'small'].includes(size) && (
         <>
           <Button icon={<HelpOption />} a11yTitle="Help" title="Help" />
@@ -40,7 +42,24 @@ export const HeaderNav = () => {
         </Avatar>
       </DropButton>
     </Nav>
-  ) : null;
+  } else {
+    <Nav align="center" direction="row" gap="small">
+    {!['xsmall', 'small'].includes(size) && (
+      <>
+        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" />
+        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" />
+      </>
+    )}
+    <DropButton
+      onClick={() => navigate("/hpe-softcat-leaderboard/SignIn")}
+    >
+      <Avatar background="dark-1">
+          <User></User>
+      </Avatar>
+    </DropButton>
+  </Nav>
+  }
+
 };
 
 export const TextEmphasis = ({ ...rest }) => {
@@ -56,12 +75,10 @@ const UserDetails = () => {
   return (
     <Box width="medium">
       <Box pad="medium" direction="row" gap="small">
-        <Avatar background="dark-1">
-          <User></User>
-        </Avatar>
+
         <Box pad={{ vertical: 'small' }}>
           <TextEmphasis size="large">
-            {`${user.firstName} ${user.lastName}`}
+            {`${user.displayName}`}
           </TextEmphasis>
           <Text size="small">{user.email}</Text>
         </Box>
@@ -77,7 +94,7 @@ const UserDetails = () => {
         pad={{ horizontal: 'xsmall', vertical: 'small' }}
       >
         <Button label="My Profile" />
-        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/hpe-softcat-leaderboard/LogIn"))} />
+        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/hpe-softcat-leaderboard/SignIn"))} />
       </Box>
     </Box>
   );

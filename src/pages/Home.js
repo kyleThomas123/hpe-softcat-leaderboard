@@ -2,13 +2,14 @@ import React, { useContext} from 'react';
 import { Box, ResponsiveContext} from 'grommet';
 import { DashboardGrid } from '../components/Dashboard/DashboardGrid';
 import { Greeting } from '../components/Data/Greeting';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Home() {
   const size = useContext(ResponsiveContext);
+  const navigate = useNavigate();
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -33,7 +34,7 @@ function Home() {
         </Box>
   } else {
     // User is signed out
-    return <p>Please sign in. <Link to="/hpe-softcat-leaderboard/SignIn">Sign In</Link></p>;
+    navigate("/hpe-softcat-leaderboard/SignIn")
   }
 }
 

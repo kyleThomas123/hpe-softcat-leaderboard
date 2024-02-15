@@ -98,10 +98,6 @@ const columns = [
     primary: true,
   },
   {
-    property: 'groupName',
-    header: 'Team name',
-  },
-  {
     property: 'arrays',
     header: 'Points',
     units: Number,
