@@ -9,8 +9,11 @@ import {
   ResponsiveContext,
   Text,
 } from 'grommet';
-import { HelpOption, HomeRounded } from 'grommet-icons';
+import { HelpOption, HomeRounded, User } from 'grommet-icons';
 import { UserContext } from './UserContext';
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 
 export const HeaderNav = () => {
   const size = useContext(ResponsiveContext);
@@ -32,15 +35,9 @@ export const HeaderNav = () => {
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
       >
-        {!user.image ? (
-          <Avatar background="blue!" flex={false}>
-            <Text size="large" color="text-strong">
-              JD
-            </Text>
-          </Avatar>
-        ) : (
-          <Avatar src={user.image} />
-        )}
+        <Avatar background="dark-1">
+            <User></User>
+        </Avatar>
       </DropButton>
     </Nav>
   ) : null;
@@ -50,20 +47,18 @@ export const TextEmphasis = ({ ...rest }) => {
     return <Text weight={500} color="text-strong" {...rest} />;
   };
 
+
 const UserDetails = () => {
-  const { user, setUser } = useContext(UserContext);
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const navigate = useNavigate();
+
   return (
     <Box width="medium">
       <Box pad="medium" direction="row" gap="small">
-        {user && !user.image ? (
-          <Avatar background="blue!" flex={false} size="large">
-            <Text size="xlarge" color="text-strong">
-              JD
-            </Text>
-          </Avatar>
-        ) : (
-          <Avatar src={user.image} size="large" />
-        )}
+        <Avatar background="dark-1">
+          <User></User>
+        </Avatar>
         <Box pad={{ vertical: 'small' }}>
           <TextEmphasis size="large">
             {`${user.firstName} ${user.lastName}`}
@@ -82,7 +77,7 @@ const UserDetails = () => {
         pad={{ horizontal: 'xsmall', vertical: 'small' }}
       >
         <Button label="My Profile" />
-        <Button label="Sign Out" onClick={() => setUser()} />
+        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/hpe-softcat-leaderboard/LogIn"))} />
       </Box>
     </Box>
   );

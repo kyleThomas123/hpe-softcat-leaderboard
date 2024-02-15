@@ -1,13 +1,20 @@
 import React, { useContext } from 'react';
 import { PageHeader } from 'grommet';
-import { UserContext } from '../Header/UserContext';
+import { getAuth } from "firebase/auth";
 
 export const Greeting = () => {
-  const { user } = useContext(UserContext);
-  return (
-    <PageHeader
-      title={`Hello, ${user.firstName}!`}
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user !== null) {
+    return (
+      <PageHeader
+        title={`Hello, ${user.email}!`}
+        subtitle="Welcome to the HPE Softcat Reseller Console."
+      />
+    );
+  } else {
+    return <PageHeader
       subtitle="Welcome to the HPE Softcat Reseller Console."
     />
-  );
+  }
 };

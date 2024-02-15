@@ -3,16 +3,14 @@ import React, { useContext } from 'react';
 import { Header, ResponsiveContext } from 'grommet';
 import { AppIdentity } from '../AppIdentity';
 import { HeaderNav } from './HeaderNav'
-import { UserContext } from './UserContext'
 
 export const HeaderNavigationExample = () => {
   const size = useContext(ResponsiveContext);
-  const { user } = useContext(UserContext);
   return (
     <Header
       align="center"
       background="background"
-      border={user ? { color: 'border-weak', side: 'bottom' } : undefined}
+      border={{ color: 'border-weak', side: 'bottom' }}
       justify="between"
       fill="horizontal"
       pad={{
@@ -21,7 +19,7 @@ export const HeaderNavigationExample = () => {
       }}
     >
       <AppIdentity title="SoftCat Leaderboard" brand="hpe" href="/hpe-softcat-leaderboard/"/>
-      {user && <HeaderNav />}
+      {<HeaderNav />}
     </Header>
   );
 };

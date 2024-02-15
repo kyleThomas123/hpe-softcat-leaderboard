@@ -25,6 +25,7 @@ import {
 } from '../components/Form/FormValidation';
 import { hpe } from 'grommet-theme-hpe';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
   
@@ -35,6 +36,7 @@ export const SignUp = () => {
   });
   const [passwordRules, setPasswordRules] = React.useState(passwordRulesStrong);
   const size = useContext(ResponsiveContext);
+  const navigate = useNavigate();
 
   const onChange = values => {
     setFormValues(values);
@@ -56,7 +58,7 @@ export const SignUp = () => {
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        return <redirect to='/'  />
+        navigate("/hpe-softcat-leaderboard/")
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -196,6 +198,7 @@ export const SignUp = () => {
             </Box>
           </Form>
         </Box>
+        <p>Already have an account? <Link to="/hpe-softcat-leaderboard/SignIn">Sign In</Link> now.</p>
       </Box>
     </Grommet>
   );

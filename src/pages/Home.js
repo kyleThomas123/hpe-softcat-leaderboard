@@ -1,24 +1,21 @@
-import React, { useContext, useState, useMemo } from 'react';
-import { Box, Button, ResponsiveContext, Text } from 'grommet';
-import { defaultUser, UserContext} from '../components/Header/UserContext'
+import React, { useContext} from 'react';
+import { Box, ResponsiveContext} from 'grommet';
 import { DashboardGrid } from '../components/Dashboard/DashboardGrid';
 import { Greeting } from '../components/Data/Greeting';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Link } from "react-router-dom";
+
+
 
 function Home() {
-  const [user, setUser] = useState(defaultUser);
   const size = useContext(ResponsiveContext);
-  const contextValue = useMemo(
-    () => ({
-      user,
-      setUser,
-    }),
-    [user],
-  );
+  const auth = getAuth();
+  const user = auth.currentUser;
 
-
-  return (
-    <UserContext.Provider value={contextValue}>
-      <Box
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    return <Box
           background="background"
           justify="center"
           pad={{
@@ -29,31 +26,15 @@ function Home() {
           }}
           flex={false}
         >
-          {user ? (
           <Box gap="large">
               <Greeting />
               <DashboardGrid />
           </Box>
-          ) : (
-          <DemoPageContent />
-          )}
-      </Box>
-    </UserContext.Provider>
-      
-    
-  );
+        </Box>
+  } else {
+    // User is signed out
+    return <p>Please sign in. <Link to="/hpe-softcat-leaderboard/SignIn">Sign In</Link></p>;
+  }
 }
-
-// This is for demo purposes only. Replace in production with app
-// specific content.
-const DemoPageContent = () => {
-  const { setUser } = useContext(UserContext);
-  return (
-    <Box align="center" gap="small">
-      <Text>This button is for demo purposes only.</Text>
-      <Button label="Sign In" primary onClick={() => setUser(defaultUser)} />
-    </Box>
-  );
-};
 
 export default Home;

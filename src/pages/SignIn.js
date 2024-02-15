@@ -2,16 +2,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Anchor,
   Box,
   Button,
-  CheckBox,
   Form,
   FormField,
   Grommet,
   Header,
   Heading,
-  Layer,
   ResponsiveContext,
   Text,
   TextInput,
@@ -20,17 +17,17 @@ import { Close, Next, CircleAlert } from 'grommet-icons';
 import { emailValidation } from '../components/Form/FormValidation';
 import { hpe } from 'grommet-theme-hpe';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import  { redirect } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 
 const ResetPassword = ({ closeLayer, email }) => {
   const [formValues, setFormValues] = React.useState({ resetEmail: email });
 
-  // eslint-disable-next-line no-unused-vars
-  const onSubmit = ({ value, touched }) => {
-    // Your password reset logic here
-    // Display success status
-    closeLayer();
-  };
+    // eslint-disable-next-line no-unused-vars
+    const onSubmit = ({ value, touched }) => {
+      // Your password reset logic here
+      // Display success status
+      closeLayer();
+    };
 
   return (
     <>
@@ -92,38 +89,24 @@ export const SignInExample = () => {
     password: '',
   });
   const size = useContext(ResponsiveContext);
-  const [showForgotPassword, setShowForgotPassword] = React.useState(false);
-  // setPassword is here for demonstration purposes,
-  // for calling credential error
+  const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
-  const [password, setPassword] = React.useState('');
   const [credentialError, setCredentialError] = React.useState(false);
 
-  const onClose = () => {
-    setShowForgotPassword(false);
-  };
-
-  const onForgotPassword = () => {
-    setShowForgotPassword(true);
-  };
 
   // eslint-disable-next-line no-unused-vars
   const onSubmit = ({ value, touched }) => {
-    // Your submission logic here
-    // For demonstration purposes, we are mocking a scenario where the password
-    // is incorrect. This will cause the error state to appear.
-    if (password !== 'password') {
-      
-    }
     const auth = getAuth();
     signInWithEmailAndPassword(auth, value.email, value.password)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        return <redirect to='Home'  />
+        navigate("/hpe-softcat-leaderboard/")
       })
       .catch((error) => {
+        // eslint-disable-next-line
         const errorCode = error.code;
+        // eslint-disable-next-line
         const errorMessage = error.message;
         setCredentialError(true);
       });
@@ -131,7 +114,7 @@ export const SignInExample = () => {
 
   return (
     <Grommet theme={hpe}>
-        <Box gap="medium" width="medium">
+      <Box gap="medium" width="medium">
         <Header
             direction="column"
             align="start"
@@ -152,7 +135,7 @@ export const SignInExample = () => {
             // Padding used to prevent focus from being cutoff
             pad={{ horizontal: 'xxsmall' }}
         >
-            <Form
+          <Form
             validate="blur"
             value={formValues}
             onChange={setFormValues}
@@ -160,7 +143,7 @@ export const SignInExample = () => {
                 required: 'This is a required field.',
             }}
             onSubmit={({ value, touched }) => onSubmit({ value, touched })}
-            >
+          >
             <FormField
                 label="Email"
                 name="email"
@@ -187,9 +170,6 @@ export const SignInExample = () => {
                 placeholder="Enter your password"
                 type="password"
                 />
-            </FormField>
-            <FormField htmlFor="remember-me" name="rememberMe">
-                <CheckBox id="remember-me" name="rememberMe" label="Remember me" />
             </FormField>
             {credentialError && (
                 <Box
@@ -218,21 +198,10 @@ export const SignInExample = () => {
                 type="submit"
                 />
             </Box>
-            </Form>
-            <Box align="start" margin={{ top: 'medium', bottom: 'small' }}>
-            <Anchor label="Forgot password?" onClick={onForgotPassword} />
-            {showForgotPassword && (
-                <Layer modal onClickOutside={onClose} onEsc={onClose}>
-                <ResetPassword
-                    closeLayer={onClose}
-                    email={formValues.email}
-                    updateForm={setFormValues}
-                />
-                </Layer>
-            )}
-            </Box>
+          </Form>
+          <p>Don't have an account? <Link to="/hpe-softcat-leaderboard/SignUp">Register</Link> now.</p>
         </Box>
-        </Box>
+      </Box>
     </Grommet>
   );
 };
