@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import {
   Add,
   Ascend,
-  Group,
   Support,
-  UserAdd,
 } from 'grommet-icons';
 
 // styled component to create custom orange button
@@ -20,10 +18,10 @@ const StyledButton = styled(Button)`
 
 export const data = [
   {
-    cta: <StyledButton label="Launch" />,
+    cta: <StyledButton label="Add points" />,
     background: 'yellow',
-    title: 'Assign Points',
-    description: `Assign points to SoftCat resellers`,
+    title: 'Add Points',
+    description: `Record your sales to get points`,
     descriptionColor: 'text-strong',
     icon: <Add color="plain" />,
   },
@@ -38,20 +36,8 @@ export const data = [
     cta: 'Explore guides',
     title: 'Guides and resources',
     description:
-      'Stay informed with how-to guides, resources, and documentation.',
+      'Stay informed with how-to guides and points explanation.',
     icon: <Support color="purple!" />,
   },
-  {
-    cta: 'Add a User',
-    title: 'Add users ',
-    description:
-      'Add a user to participate in the leaderboard.',
-    icon: <Group color="orange!" />,
-  },
-  {
-    cta: 'Assign roles',
-    title: 'Assign user access',
-    description: 'Assign other users with admin access.',
-    icon: <UserAdd color="yellow!" />,
-  },
+
 ];

@@ -7,7 +7,7 @@ export const Greeting = () => {
   return (
     <PageHeader
       title={`Hello, ${user.firstName}!`}
-      subtitle="Welcome to the HPE Softcat Reseller Admin Console."
+      subtitle="Welcome to the HPE Softcat Reseller Console."
     />
   );
 };
