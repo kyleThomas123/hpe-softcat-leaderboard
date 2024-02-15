@@ -11,6 +11,7 @@ import reportWebVitals from './reportWebVitals';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 export default function App() {
   return (
@@ -47,16 +48,19 @@ const firebaseConfig = {
   storageBucket: "softcatleaderboard.appspot.com",
   messagingSenderId: "385195349354",
   appId: "1:385195349354:web:02a7729acdee798edd4113",
-  measurementId: "G-0701CNK6XT"
+  measurementId: "G-0701CNK6XT",
+  databaseURL: "https://softcatleaderboard-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // eslint-disable-next-line
+const auth = getAuth(app);
+// eslint-disable-next-line
+const database = getDatabase(app);
+// eslint-disable-next-line
 const analytics = getAnalytics(app);
 
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
