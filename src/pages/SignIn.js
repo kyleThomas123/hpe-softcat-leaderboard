@@ -19,6 +19,8 @@ import {
 import { Close, Next, CircleAlert } from 'grommet-icons';
 import { emailValidation } from '../components/Form/FormValidation';
 import { hpe } from 'grommet-theme-hpe';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import  { redirect } from 'react-router-dom'
 
 const ResetPassword = ({ closeLayer, email }) => {
   const [formValues, setFormValues] = React.useState({ resetEmail: email });
@@ -111,8 +113,20 @@ export const SignInExample = () => {
     // For demonstration purposes, we are mocking a scenario where the password
     // is incorrect. This will cause the error state to appear.
     if (password !== 'password') {
-      setCredentialError(true);
+      
     }
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, value.email, value.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        return <redirect to='Home'  />
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setCredentialError(true);
+      });
   };
 
   return (

@@ -24,6 +24,7 @@ import {
   passwordRulesStrong,
 } from '../components/Form/FormValidation';
 import { hpe } from 'grommet-theme-hpe';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export const SignUp = () => {
   
@@ -46,9 +47,22 @@ export const SignUp = () => {
     setPasswordRules(adjustedPasswordRules);
   };
 
+  const auth = getAuth();
+  
   // eslint-disable-next-line no-unused-vars
   const onSubmit = ({ value, touched }) => {
-    // Your submission logic here
+    
+    createUserWithEmailAndPassword(auth, value.email, value.password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        return <redirect to='/'  />
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   };
 
   return (
