@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from "./pages/Layout";
 import LeaderBoard from "./pages/LeaderBoard";
+import PointsForm from "./pages/PointsForm";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/hpe-softcat-leaderboard/" element={<Layout />}>
           <Route path="/hpe-softcat-leaderboard/" index element={<Home />} />
           <Route path="/hpe-softcat-leaderboard/LeaderBoard" element={<LeaderBoard />} />
+          <Route path="/hpe-softcat-leaderboard/PointsForm" element={<PointsForm />} />
           <Route path="/hpe-softcat-leaderboard/SignUp" element={<SignUp />} />
           <Route path="/hpe-softcat-leaderboard/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />

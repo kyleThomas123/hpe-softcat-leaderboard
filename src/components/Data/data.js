@@ -1,4 +1,5 @@
 import { Button } from 'grommet';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import {
   Add,
@@ -18,7 +19,7 @@ const StyledButton = styled(Button)`
 
 export const data = [
   {
-    cta: <StyledButton label="Add points" />,
+    cta: <Link to="/hpe-softcat-leaderboard/pointsform"><StyledButton label="Add points" /></Link>,
     background: 'yellow',
     title: 'Add Points',
     description: `Record your sales to get points`,
