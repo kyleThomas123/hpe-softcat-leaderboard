@@ -110,7 +110,7 @@ export const SignUp = () => {
             method="post"
           >
             <FormField
-              label="Email"
+              label="Work Email"
               htmlFor="email-sign-up-simple"
               name="email"
               validate={emailValidation}

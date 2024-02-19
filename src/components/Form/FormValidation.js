@@ -54,6 +54,11 @@ export const emailMask = [
       message: 'Enter a valid email address.',
       status: 'error',
     },
+    {
+      regexp: new RegExp('[^@]+(@hpe.com|@softcat.com)$'),
+      message: 'Email address must end with @hpe.com or @softcat.com',
+      status: 'error',
+    },
   ];
   
   export const passwordRequirements = [

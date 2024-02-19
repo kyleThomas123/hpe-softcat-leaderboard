@@ -132,7 +132,7 @@ export const DataTableExample = ({ designSystemDemo }) => {
         level={3}
         margin={{ bottom: 'small', top: 'none' }}
       >
-        Storage pools
+        HPE Incentive Leaderboard
       </Heading>
       <Box
         // Height is restricted to keep inline doc page examples more compact.
