@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/hpe-softcat-leaderboard/static/js/main.f44e7c61.js",
+    "main.js": "/hpe-softcat-leaderboard/static/js/main.a838167e.js",
     "static/js/787.29d93bce.chunk.js": "/hpe-softcat-leaderboard/static/js/787.29d93bce.chunk.js",
     "index.html": "/hpe-softcat-leaderboard/index.html",
-    "main.f44e7c61.js.map": "/hpe-softcat-leaderboard/static/js/main.f44e7c61.js.map",
+    "main.a838167e.js.map": "/hpe-softcat-leaderboard/static/js/main.a838167e.js.map",
     "787.29d93bce.chunk.js.map": "/hpe-softcat-leaderboard/static/js/787.29d93bce.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.f44e7c61.js"
+    "static/js/main.a838167e.js"
   ]
 }
