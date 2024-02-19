@@ -98,9 +98,7 @@ export const SignInExample = () => {
   const onSubmit = ({ value, touched }) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, value.email, value.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
+      .then(() => {
         navigate("/hpe-softcat-leaderboard/")
       })
       .catch((error) => {

@@ -54,15 +54,7 @@ export const SignUp = () => {
   // eslint-disable-next-line no-unused-vars
   const onSubmit = ({ value, touched }) => {
     createUserWithEmailAndPassword(auth, value.email, value.password)
-      .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      }).then(() => {
+      .then(() => {
         const auth = getAuth();
         updateProfile(auth.currentUser, {
           displayName: value.fullName,
@@ -72,7 +64,7 @@ export const SignUp = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
+        console.log(errorCode, errorMessage)
       });
   };
 
