@@ -7,10 +7,19 @@ export const Greeting = () => {
   const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
-  if (user !== null) {
+  if (user.displayName){
     return (
       <PageHeader
         title={`Hello, ${user.displayName}!`}
+        subtitle="Welcome to the HPE Softcat Reseller Console."
+      />
+    );
+  }
+  
+  if (user !== null) {
+    return (
+      <PageHeader
+        title={`Hello!`}
         subtitle="Welcome to the HPE Softcat Reseller Console."
       />
     );
