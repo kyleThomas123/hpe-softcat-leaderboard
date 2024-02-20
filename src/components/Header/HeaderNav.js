@@ -11,7 +11,7 @@ import {
 } from 'grommet';
 import { HelpOption, HomeRounded, User } from 'grommet-icons';
 import { getAuth, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 
@@ -26,8 +26,8 @@ export const HeaderNav = () => {
     return <Nav align="center" direction="row" gap="small">
       {!['xsmall', 'small'].includes(size) && (
         <>
-          <Button icon={<HelpOption />} a11yTitle="Help" title="Help" />
-          <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" />
+          <Link to="/hpe-softcat-leaderboard/Guides"><Button icon={<HelpOption />} a11yTitle="Help" title="Help" /></Link>
+          <Link to="/hpe-softcat-leaderboard/"><Button icon={<HomeRounded />} a11yTitle="Home" title="Home" /></Link>
         </>
       )}
       <DropButton
@@ -46,8 +46,8 @@ export const HeaderNav = () => {
     <Nav align="center" direction="row" gap="small">
     {!['xsmall', 'small'].includes(size) && (
       <>
-        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" />
-        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" />
+        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" onClick = {() => navigate("/hpe-softcat-leaderboard/Guides")}/>
+        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" onClick = {() => navigate("/hpe-softcat-leaderboard/")}/>
       </>
     )}
     <DropButton
