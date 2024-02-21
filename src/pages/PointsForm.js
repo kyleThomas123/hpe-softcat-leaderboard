@@ -90,7 +90,7 @@ export const PointsForm = () => {
             />
           </FormField>
           <Box direction="row-responsive" gap="medium" pad={{ top: 'medium' }}>
-            <Button label="Submit form" primary />
+            <Button label="Submit Sales" primary />
             <Button type ="submit" label="Reset form" onClick={onReset} secondary />
             <Link to="/hpe-softcat-leaderboard/"><Button label="Cancel" /></Link>
           </Box>
