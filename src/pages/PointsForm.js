@@ -3,7 +3,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { firestore } from '../index.js';
-import { getFirestore, doc, collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
+import { getAuth } from "firebase/auth";
 
 import {
   Box,
@@ -33,6 +34,7 @@ export const PointsForm = () => {
 
   const [formValues, setFormValues] = React.useState(initialPointsData);
   const navigate = useNavigate()
+  const auth = getAuth();
 
   const submitPoints = async () => {
     console.log('Points form submitted');
@@ -40,10 +42,12 @@ export const PointsForm = () => {
     try {
       // Add data to Firestore
       const db = collection(firestore, 'point-forms');
-      const doc = await addDoc(db, {formValues});
+      const doc = await addDoc(db, {
+        user: auth.currentUser.displayName,
+        formValues});
 
       // Return to homepage
-      navigate("/hpe-softcat-leaderboard/SignIn");
+      navigate("/hpe-softcat-leaderboard/");
     } catch (error) {
       console.error('Error adding document: ', error);
     }
