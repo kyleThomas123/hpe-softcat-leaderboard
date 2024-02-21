@@ -1,7 +1,9 @@
 // PointsForm.js
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { firestore } from '../index.js';
+import { getFirestore, doc, collection, addDoc } from 'firebase/firestore'
 
 import {
   Box,
@@ -30,14 +32,25 @@ export const PointsForm = () => {
   };
 
   const [formValues, setFormValues] = React.useState(initialPointsData);
+  const navigate = useNavigate()
 
-  const submitPoints = () => {
-    // Mock function to demonstrate implementation
+  const submitPoints = async () => {
+    console.log('Points form submitted');
+
+    try {
+      // Add data to Firestore
+      const db = collection(firestore, 'point-forms');
+      const doc = await addDoc(db, {formValues});
+
+      // Return to homepage
+      navigate("/hpe-softcat-leaderboard/SignIn");
+    } catch (error) {
+      console.error('Error adding document: ', error);
+    }
   };
 
   const onFormChange = value => {
     setFormValues(value);
-    submitPoints();
   };
 
   const onReset = () => {
@@ -90,7 +103,7 @@ export const PointsForm = () => {
             />
           </FormField>
           <Box direction="row-responsive" gap="medium" pad={{ top: 'medium' }}>
-            <Button label="Submit Sales" primary />
+            <Button label="Submit Sales" onClick={submitPoints} primary />
             <Button type ="submit" label="Reset form" onClick={onReset} secondary />
             <Link to="/hpe-softcat-leaderboard/"><Button label="Cancel" /></Link>
           </Box>
