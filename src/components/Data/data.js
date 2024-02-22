@@ -1,4 +1,5 @@
 import { Button } from 'grommet';
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import {
   Add,
@@ -33,7 +34,7 @@ export const data = [
     icon: <Ascend color="green" />,
   },
   {
-    cta: 'Explore guides',
+    cta: <Link to="/hpe-softcat-leaderboard/Guides"><StyledButton label="Explore guides" /></Link>,
     title: 'Guides and resources',
     description:
       'Stay informed with how-to guides and points explanation.',
