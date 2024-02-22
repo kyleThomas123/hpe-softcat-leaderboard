@@ -51,7 +51,7 @@ export const HeaderNav = () => {
       </>
     )}
     <DropButton
-      onClick={() => navigate("/hpe-softcat-leaderboard/SignIn")}
+      onClick={() => navigate("/SignIn")}
     >
       <Avatar background="dark-1">
           <User></User>
@@ -94,7 +94,7 @@ const UserDetails = () => {
         pad={{ horizontal: 'xsmall', vertical: 'small' }}
       >
         <Button label="My Profile" />
-        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/hpe-softcat-leaderboard/SignIn"))} />
+        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/SignIn"))} />
       </Box>
     </Box>
   );
