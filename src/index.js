@@ -23,14 +23,12 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/hpe-softcat-leaderboard/" element={<Layout />}>
-          <Route path="/hpe-softcat-leaderboard/" index element={<Home />} />
-          <Route path="/hpe-softcat-leaderboard/LeaderBoard" element={<LeaderBoard />} />
-          <Route path="/hpe-softcat-leaderboard/PointsForm" element={<PointsForm />} />
-          <Route path="/hpe-softcat-leaderboard/Guides" element={<Guides />} />
-          <Route path="/hpe-softcat-leaderboard/Profile" element={<Profile />} />
-          <Route path="/hpe-softcat-leaderboard/SignIn" element={<SignIn />} />
-          <Route path="/hpe-softcat-leaderboard/SignUp" element={<SignUp />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/" index element={<Home />} />
+          <Route path="/LeaderBoard" element={<LeaderBoard />} />
+          <Route path="/Guides" element={<Guides />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

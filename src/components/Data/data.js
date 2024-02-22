@@ -34,7 +34,7 @@ export const data = [
     icon: <Ascend color="green" />,
   },
   {
-    cta: <Link to="/hpe-softcat-leaderboard/Guides"><StyledButton label="Explore guides" /></Link>,
+    cta: <Link to="/Guides"><StyledButton label="Explore guides" /></Link>,
     title: 'Guides and resources',
     description:
       'Stay informed with how-to guides and points explanation.',
