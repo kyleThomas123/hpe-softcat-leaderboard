@@ -51,7 +51,7 @@ export const HeaderNav = () => {
       </>
     )}
     <DropButton
-      onClick={() => navigate("/hpe-softcat-leaderboard/SignIn")}
+      onClick={() => navigate("/SignIn")}
     >
       <Avatar background="dark-1">
           <User></User>

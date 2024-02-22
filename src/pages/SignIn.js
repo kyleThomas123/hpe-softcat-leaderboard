@@ -99,7 +99,7 @@ export const SignInExample = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, value.email, value.password)
       .then(() => {
-        navigate("/hpe-softcat-leaderboard/")
+        navigate("/")
       })
       .catch((error) => {
         // eslint-disable-next-line
@@ -197,7 +197,7 @@ export const SignInExample = () => {
                 />
             </Box>
           </Form>
-          <p>Don't have an account? <Link to="/hpe-softcat-leaderboard/SignUp">Register</Link> now.</p>
+          <p>Don't have an account? <Link to="/SignUp">Register</Link> now.</p>
         </Box>
       </Box>
     </Grommet>

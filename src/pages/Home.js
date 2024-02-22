@@ -34,7 +34,7 @@ function Home() {
         </Box>
   } else {
     // User is signed out
-    navigate("/hpe-softcat-leaderboard/SignIn")
+    navigate("/SignIn")
   }
 }
 
