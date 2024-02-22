@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageHeader } from 'grommet';
-import { Box, Text } from 'grommet';
+import { Box } from 'grommet';
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { ProfilePointsSummary } from '../components/ProfilePoints/ProfilePointsSummary';

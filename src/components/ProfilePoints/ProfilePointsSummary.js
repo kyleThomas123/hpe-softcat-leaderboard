@@ -7,7 +7,6 @@ import {
   Heading,
   NameValueList,
   NameValuePair,
-  Text,
 } from 'grommet';
 
 const cardSummaryData = {
