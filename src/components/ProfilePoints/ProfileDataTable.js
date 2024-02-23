@@ -5,7 +5,6 @@ import {
   Box,
   DataTable,
   Heading,
-  ResponsiveContext,
 } from 'grommet';
 
 const data = [
@@ -61,15 +60,8 @@ const columns = [
     { property: 'businessUnit', header: 'Business Unit'},
   ];
 
-  // Define data structure for DataTableColumns sorting
-const options = columns.map(({ header, property }) => ({
-    property,
-    label: header,
-  }));
-
 // designSystemDemo is used for DS site only, can be removed in production.
 export const ProfileDataTable = ({ designSystemDemo }) => {
-  const size = React.useContext(ResponsiveContext);
 
   return (
     <>
