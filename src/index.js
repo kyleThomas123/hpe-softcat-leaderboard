@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from "./pages/Layout";
-import LeaderBoard from "./pages/LeaderBoard";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
-import NoPage from "./pages/NoPage";
 import Guides from "./pages/guides";
+import LeaderBoard from "./pages/LeaderBoard";
+import NoPage from "./pages/NoPage";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
 import reportWebVitals from './reportWebVitals';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -20,8 +21,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" index element={<Home />} />
-          <Route path="/LeaderBoard" element={<LeaderBoard />} />
           <Route path="/Guides" element={<Guides />} />
+          <Route path="/LeaderBoard" element={<LeaderBoard />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />

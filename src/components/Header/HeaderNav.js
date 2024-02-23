@@ -93,7 +93,7 @@ const UserDetails = () => {
         justify="between"
         pad={{ horizontal: 'xsmall', vertical: 'small' }}
       >
-        <Button label="My Profile" />
+        <Button label="My Profile" onClick={() => navigate("/Profile")}/>
         <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/SignIn"))} />
       </Box>
     </Box>
