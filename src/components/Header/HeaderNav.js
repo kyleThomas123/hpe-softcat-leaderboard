@@ -26,8 +26,8 @@ export const HeaderNav = () => {
     return <Nav align="center" direction="row" gap="small">
       {!['xsmall', 'small'].includes(size) && (
         <>
-          <Link to="/hpe-softcat-leaderboard/Guides"><Button icon={<HelpOption />} a11yTitle="Help" title="Help" /></Link>
-          <Link to="/hpe-softcat-leaderboard/"><Button icon={<HomeRounded />} a11yTitle="Home" title="Home" /></Link>
+          <Link to="/Guides"><Button icon={<HelpOption />} a11yTitle="Help" title="Help" /></Link>
+          <Link to="/"><Button icon={<HomeRounded />} a11yTitle="Home" title="Home" /></Link>
         </>
       )}
       <DropButton
@@ -46,12 +46,12 @@ export const HeaderNav = () => {
     <Nav align="center" direction="row" gap="small">
     {!['xsmall', 'small'].includes(size) && (
       <>
-        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" onClick = {() => navigate("/hpe-softcat-leaderboard/Guides")}/>
-        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" onClick = {() => navigate("/hpe-softcat-leaderboard/")}/>
+        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" onClick = {() => navigate("/Guides")}/>
+        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" onClick = {() => navigate("/")}/>
       </>
     )}
     <DropButton
-      onClick={() => navigate("/hpe-softcat-leaderboard/SignIn")}
+      onClick={() => navigate("/SignIn")}
     >
       <Avatar background="dark-1">
           <User></User>
@@ -94,7 +94,7 @@ const UserDetails = () => {
         pad={{ horizontal: 'xsmall', vertical: 'small' }}
       >
         <Button label="My Profile" />
-        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/hpe-softcat-leaderboard/SignIn"))} />
+        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/SignIn"))} />
       </Box>
     </Box>
   );
