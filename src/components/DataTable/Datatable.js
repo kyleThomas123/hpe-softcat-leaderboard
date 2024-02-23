@@ -14,79 +14,79 @@ const data = [
     id: 'mjbpiclthh8y',
     poolName: 'Kyle',
     groupName: 'Asup',
-    arrays: 12341,
+    points: 12341,
   },
   {
     id: 'hx5f2e57phfb',
     poolName: 'Jack',
     groupName: 'Dev',
-    arrays: 3523,
+    points: 3523,
   },
   {
     id: 'om2hy2z79kyz',
     poolName: 'Tom',
     groupName: 'Dev',
-    arrays: 94748,
+    points: 94748,
   },
   {
     id: '6d9u4hv95xjq',
     poolName: 'Ben',
     groupName: 'Asup',
-    arrays: 1,
+    points: 1,
   },
   {
     id: 'qpsidi3ccnpr',
     poolName: 'Alex',
     groupName: 'Dev',
-    arrays: 124454,
+    points: 124454,
   },
   {
     id: 'l3d8xkm0knx4',
     poolName: 'Sacha',
     groupName: 'Asup',
-    arrays: 9393,
+    points: 9393,
   },
   {
     id: 'jsjas87qeqgj',
     poolName: 'Luke',
     groupName: 'Dev',
-    arrays: 1010,
+    points: 1010,
   },
   {
     id: '1jrnzxds9419',
     poolName: 'San',
     groupName: 'Dev',
-    arrays: 1616,
+    points: 1616,
   },
   {
     id: 'lva18ol56t7a',
     poolName: 'Lexi',
     groupName: 'Dev',
-    arrays: 292,
+    points: 292,
   },
   {
     id: 'g9v1104koten',
     poolName: 'Tom',
     groupName: 'Asup',
-    arrays: 2762,
+    points: 2762,
   },
   {
     id: 'ny13xepj8wyc',
     poolName: 'Plase',
     groupName: 'Dev',
-    arrays: 2672,
+    points: 2672,
   },
   {
     id: 'vz86u3ll4ai2',
     poolName: 'Vicki',
     groupName: 'Dev',
-    arrays: 2652,
+    points: 2652,
   },
   {
     id: 'f1iucu2ybzf3',
     poolName: 'Tori',
     groupName: 'Dev',
-    arrays: 1726,
+    points: 1726,
   },
 ];
 
@@ -98,7 +98,7 @@ const columns = [
     primary: true,
   },
   {
-    property: 'arrays',
+    property: 'points',
     header: 'Points',
     units: Number,
   },
@@ -106,20 +106,20 @@ const columns = [
 
 ];
 
-const handleClickRow = obj => {
-  // eslint-disable-next-line no-alert
-  alert(`
-  Record was clicked:
-  { 
-      id: ${obj.id},
-      poolName: ${obj.poolName}
-  }
+// const handleClickRow = obj => {
+//   // eslint-disable-next-line no-alert
+//   alert(`
+//   Record was clicked:
+//   { 
+//       id: ${obj.id},
+//       poolName: ${obj.poolName}
+//   }
   
-  You can use onClickRow() to navigate to a record's detail
-  page, open a panel or modal to edit the record, or perform 
-  other actions as you see fit.
-  `);
-};
+//   You can use onClickRow() to navigate to a record's detail
+//   page, open a panel or modal to edit the record, or perform 
+//   other actions as you see fit.
+//   `);
+// };
 
 // designSystemDemo is used for DS site only, can be removed in production.
 export const DataTableExample = ({ designSystemDemo }) => {
@@ -155,8 +155,9 @@ export const DataTableExample = ({ designSystemDemo }) => {
             ...columns,
           ]}
           fill
-          onClickRow={({ datum }) => handleClickRow(datum)}
+          // onClickRow={({ datum }) => handleClickRow(datum)}
           pin
+          sort={{ property: 'points', direction: 'desc' }}
           sortable
         />
       </Box>
