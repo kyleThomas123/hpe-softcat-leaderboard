@@ -2,7 +2,7 @@
   "name": "hpe-react-practice",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kylethomas123.github.io/hpe-softcat-leaderboard/",
+  "homepage": "https://softcatleaderboard.web.app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -16,6 +16,7 @@
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
+    "serve": "^14.2.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
