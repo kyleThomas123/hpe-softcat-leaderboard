@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { firestore } from '../index.js';
-import { collection, addDoc } from 'firebase/firestore'
+import { doc, setDoc, updateDoc, getDoc } from 'firebase/firestore'
 import { getAuth } from "firebase/auth";
 
 import {
@@ -25,6 +25,15 @@ const businessUnits = [
   'Other',
 ];
 
+function createRandomString(length) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
 export const PointsForm = () => {
   const initialPointsData = {
     OPE: '',
@@ -38,19 +47,49 @@ export const PointsForm = () => {
 
   const submitPoints = async () => {
     console.log('Points form submitted');
+    let isKeyUnique = false;
+    let randkey = createRandomString(20);
+
+    while (!isKeyUnique) {
+      const docRef = doc(firestore, 'sales-forms', auth.currentUser.uid);
+      try {
+        const docSnapshot = await getDoc(docRef);
+        if (docSnapshot.exists()) {
+          // Check if the key already exists in the document
+          const data = docSnapshot.data();
+          if (!data.hasOwnProperty(randkey)) {
+            isKeyUnique = true;
+          } else {
+            console.log(`Key ${randkey} already exists. Generating a new one.`);
+            randkey = createRandomString(20);
+          }
+        } else {
+          isKeyUnique = true;
+        }
+      } catch (error) {
+        console.error('Error checking document:', error);
+        break;
+      }
+    }
 
     try {
       // Add data to Firestore
-      const db = collection(firestore, 'point-forms');
-      const doc = await addDoc(db, {
-        user: auth.currentUser.displayName,
-        formValues});
-
+      const docRef = doc(firestore, 'sales-forms', auth.currentUser.uid);
+      const randkey = createRandomString(25);
+      const docSnapshot = await getDoc(docRef);
+      if (docSnapshot.exists()) {
+        const res = await updateDoc(doc(firestore, 'sales-forms', auth.currentUser.uid), {[randkey]: formValues});
+      } else {
+        const res = await setDoc(doc(firestore, 'sales-forms', auth.currentUser.uid), {[randkey]: formValues});
+      }
       // Return to homepage
       navigate("/hpe-softcat-leaderboard/");
     } catch (error) {
       console.error('Error adding document: ', error);
     }
+
+    // Return to homepage
+    navigate("/hpe-softcat-leaderboard/");
   };
 
   const onFormChange = value => {
