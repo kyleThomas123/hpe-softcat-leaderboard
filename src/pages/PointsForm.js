@@ -87,9 +87,6 @@ export const PointsForm = () => {
     } catch (error) {
       console.error('Error adding document: ', error);
     }
-
-    // Return to homepage
-    navigate("/hpe-softcat-leaderboard/");
   };
 
   const onFormChange = value => {
