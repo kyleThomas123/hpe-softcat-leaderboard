@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Text } from 'grommet';
 import { Hpe } from 'grommet-icons';
+import { Link } from "react-router-dom";
 
 const brands = {
   hpe: {
@@ -11,33 +12,35 @@ const brands = {
 };
 
 export const AppIdentity = forwardRef(
-  ({ brand, logoOnly, href, title, ...rest }, ref) => {
+  ({ brand, logoOnly, title, ...rest }, ref) => {
     const textSize = 'medium';
 
     return (
-      <Button href={href} ref={ref} {...rest} plain>
-        <Box
-          direction="row"
-          align="center"
-          gap="medium"
-          // pad maintains accessible hit target
-          // non-responsive maintains same dimensions for mobile
-          pad={{ vertical: 'small' }}
-          responsive={false}
-        >
-          {brand && brands[brand].logo}
-          {!logoOnly && (
-            <Box direction="row" gap="xsmall">
-              <Text weight="bold" size={textSize} color="text">
-                {brands[brand].name}
-              </Text>
-              <Text size={textSize} color="text">
-                {title}
-              </Text>
-            </Box>
-          )}
-        </Box>
-      </Button>
+      <Link to="/">
+        <Button ref={ref} {...rest} plain>
+          <Box
+            direction="row"
+            align="center"
+            gap="medium"
+            // pad maintains accessible hit target
+            // non-responsive maintains same dimensions for mobile
+            pad={{ vertical: 'small' }}
+            responsive={false}
+          >
+            {brand && brands[brand].logo}
+            {!logoOnly && (
+              <Box direction="row" gap="xsmall">
+                <Text weight="bold" size={textSize} color="text">
+                  {brands[brand].name}
+                </Text>
+                <Text size={textSize} color="text">
+                  {title}
+                </Text>
+              </Box>
+            )}
+          </Box>
+        </Button>
+      </Link>
     );
   },
 );
@@ -45,12 +48,10 @@ export const AppIdentity = forwardRef(
 AppIdentity.propTypes = {
   brand: PropTypes.string.isRequired,
   logoOnly: PropTypes.bool,
-  href: PropTypes.string,
   title: PropTypes.string,
 };
 
 AppIdentity.defaultProps = {
   logoOnly: false,
-  href: '/',
   title: undefined,
 };
