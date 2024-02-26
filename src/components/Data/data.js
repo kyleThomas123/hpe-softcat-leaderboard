@@ -19,7 +19,7 @@ const StyledButton = styled(Button)`
 
 export const data = [
   {
-    cta: <Link to="/hpe-softcat-leaderboard/pointsform"><StyledButton label="Add points" /></Link>,
+    cta: <Link to="/hpe-softcat-leaderboard/pointsform"><StyledButton label="Submit Sales" /></Link>,
     background: 'yellow',
     title: 'Add Points',
     description: `Record your sales to get points`,
