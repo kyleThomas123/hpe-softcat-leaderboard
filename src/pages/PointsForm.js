@@ -78,6 +78,7 @@ export const PointsForm = () => {
       const randkey = createRandomString(25);
       const docSnapshot = await getDoc(docRef);
       if (docSnapshot.exists()) {
+      // eslint-disable-next-line
         const res = await updateDoc(doc(firestore, 'sales-forms', auth.currentUser.uid), {[randkey]: formValues});
       } else {
         const res = await setDoc(doc(firestore, 'sales-forms', auth.currentUser.uid), {[randkey]: formValues});
