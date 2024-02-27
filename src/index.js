@@ -9,8 +9,10 @@ import NoPage from "./pages/NoPage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
+import PointsForm from "./pages/PointsForm";
 import reportWebVitals from './reportWebVitals';
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore'
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
@@ -24,6 +26,7 @@ export default function App() {
           <Route path="/Guides" element={<Guides />} />
           <Route path="/LeaderBoard" element={<LeaderBoard />} />
           <Route path="/Profile" element={<Profile />} />
+            <Route path="/PointsForm" element={<PointsForm />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />
@@ -64,6 +67,9 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 // eslint-disable-next-line
 const analytics = getAnalytics(app);
+// Grab the firestore for other pages
+initializeApp(firebaseConfig);
+export const firestore = getFirestore();
 
 
 // If you want to start measuring performance in your app, pass a function
