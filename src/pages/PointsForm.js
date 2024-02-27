@@ -81,10 +81,11 @@ export const PointsForm = () => {
       // eslint-disable-next-line
         const res = await updateDoc(doc(firestore, 'sales-forms', auth.currentUser.uid), {[randkey]: formValues});
       } else {
+      // eslint-disable-next-line
         const res = await setDoc(doc(firestore, 'sales-forms', auth.currentUser.uid), {[randkey]: formValues});
       }
       // Return to homepage
-      navigate("/hpe-softcat-leaderboard/");
+      navigate("/");
     } catch (error) {
       console.error('Error adding document: ', error);
     }
@@ -146,7 +147,7 @@ export const PointsForm = () => {
           <Box direction="row-responsive" gap="medium" pad={{ top: 'medium' }}>
             <Button label="Submit Sales" onClick={submitPoints} primary />
             <Button type ="submit" label="Reset form" onClick={onReset} secondary />
-            <Link to="/hpe-softcat-leaderboard/"><Button label="Cancel" /></Link>
+            <Link to="/"><Button label="Cancel" /></Link>
           </Box>
         </Form>
       </Box>

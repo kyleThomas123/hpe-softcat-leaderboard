@@ -35,7 +35,7 @@ export const Profile = () => {
         
     );
   } else {
-    navigate("/hpe-softcat-leaderboard/SignIn");
+    navigate("/SignIn");
   }
 };
   
