@@ -59,7 +59,7 @@ export const SignUp = () => {
         updateProfile(auth.currentUser, {
           displayName: value.fullName,
         })
-        navigate("/hpe-softcat-leaderboard/")
+        navigate("/")
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -199,7 +199,7 @@ export const SignUp = () => {
             </Box>
           </Form>
         </Box>
-        <p>Already have an account? <Link to="/hpe-softcat-leaderboard/SignIn">Sign In</Link> now.</p>
+        <p>Already have an account? <Link to="/SignIn">Sign In</Link> now.</p>
       </Box>
     </Grommet>
   );

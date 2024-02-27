@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from "./pages/Layout";
+import Guides from "./pages/guides";
 import LeaderBoard from "./pages/LeaderBoard";
-import PointsForm from "./pages/PointsForm";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
+import PointsForm from "./pages/PointsForm";
 import reportWebVitals from './reportWebVitals';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore'
@@ -19,12 +21,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/hpe-softcat-leaderboard/" element={<Layout />}>
-          <Route path="/hpe-softcat-leaderboard/" index element={<Home />} />
-          <Route path="/hpe-softcat-leaderboard/LeaderBoard" element={<LeaderBoard />} />
-          <Route path="/hpe-softcat-leaderboard/PointsForm" element={<PointsForm />} />
-          <Route path="/hpe-softcat-leaderboard/SignUp" element={<SignUp />} />
-          <Route path="/hpe-softcat-leaderboard/SignIn" element={<SignIn />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/" index element={<Home />} />
+          <Route path="/Guides" element={<Guides />} />
+          <Route path="/LeaderBoard" element={<LeaderBoard />} />
+          <Route path="/Profile" element={<Profile />} />
+            <Route path="/PointsForm" element={<PointsForm />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

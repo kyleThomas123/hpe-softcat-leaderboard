@@ -11,7 +11,7 @@ import {
 } from 'grommet';
 import { HelpOption, HomeRounded, User } from 'grommet-icons';
 import { getAuth, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 
@@ -26,8 +26,8 @@ export const HeaderNav = () => {
     return <Nav align="center" direction="row" gap="small">
       {!['xsmall', 'small'].includes(size) && (
         <>
-          <Button icon={<HelpOption />} a11yTitle="Help" title="Help" />
-          <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" />
+          <Link to="/Guides"><Button icon={<HelpOption />} a11yTitle="Help" title="Help" /></Link>
+          <Link to="/"><Button icon={<HomeRounded />} a11yTitle="Home" title="Home" /></Link>
         </>
       )}
       <DropButton
@@ -46,12 +46,12 @@ export const HeaderNav = () => {
     <Nav align="center" direction="row" gap="small">
     {!['xsmall', 'small'].includes(size) && (
       <>
-        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" />
-        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" />
+        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" onClick = {() => navigate("/Guides")}/>
+        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" onClick = {() => navigate("/")}/>
       </>
     )}
     <DropButton
-      onClick={() => navigate("/hpe-softcat-leaderboard/SignIn")}
+      onClick={() => navigate("/SignIn")}
     >
       <Avatar background="dark-1">
           <User></User>
@@ -93,8 +93,8 @@ const UserDetails = () => {
         justify="between"
         pad={{ horizontal: 'xsmall', vertical: 'small' }}
       >
-        <Button label="My Profile" />
-        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/hpe-softcat-leaderboard/SignIn"))} />
+        <Button label="My Profile" onClick={() => navigate("/Profile")}/>
+        <Button label="Sign Out" onClick={() => signOut(auth).then(navigate("/SignIn"))} />
       </Box>
     </Box>
   );

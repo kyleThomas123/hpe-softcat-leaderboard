@@ -24,6 +24,6 @@ export const Greeting = () => {
       />
     );
   } else {
-    navigate("/hpe-softcat-leaderboard/SignIn");
+    navigate("/SignIn");
   }
 };
