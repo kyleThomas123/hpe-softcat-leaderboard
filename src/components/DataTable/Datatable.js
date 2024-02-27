@@ -11,79 +11,66 @@ import {
 
 const data = [
   {
-    id: 'mjbpiclthh8y',
     poolName: 'Kyle',
     groupName: 'Asup',
     points: 12341,
   },
   {
-    id: 'hx5f2e57phfb',
     poolName: 'Jack',
     groupName: 'Dev',
     points: 3523,
   },
   {
-    id: 'om2hy2z79kyz',
     poolName: 'Tom',
     groupName: 'Dev',
     points: 94748,
   },
   {
-    id: '6d9u4hv95xjq',
     poolName: 'Ben',
     groupName: 'Asup',
     points: 1,
   },
   {
-    id: 'qpsidi3ccnpr',
     poolName: 'Alex',
     groupName: 'Dev',
     points: 124454,
   },
   {
-    id: 'l3d8xkm0knx4',
     poolName: 'Sacha',
     groupName: 'Asup',
     points: 9393,
   },
   {
-    id: 'jsjas87qeqgj',
     poolName: 'Luke',
     groupName: 'Dev',
     points: 1010,
   },
   {
-    id: '1jrnzxds9419',
     poolName: 'San',
     groupName: 'Dev',
     points: 1616,
   },
   {
-    id: 'lva18ol56t7a',
     poolName: 'Lexi',
     groupName: 'Dev',
     points: 292,
   },
   {
-    id: 'g9v1104koten',
     poolName: 'Tom',
     groupName: 'Asup',
     points: 2762,
   },
   {
-    id: 'ny13xepj8wyc',
     poolName: 'Plase',
     groupName: 'Dev',
     points: 2672,
   },
   {
-    id: 'vz86u3ll4ai2',
     poolName: 'Vicki',
     groupName: 'Dev',
     points: 2652,
   },
   {
-    id: 'f1iucu2ybzf3',
     poolName: 'Tori',
     groupName: 'Dev',
     points: 1726,
@@ -144,16 +131,7 @@ export const DataTableExample = ({ designSystemDemo }) => {
         <DataTable
           aria-describedby="storage-pools-heading"
           data={data}
-          columns={[
-            {
-              property: 'id',
-              header: 'Id',
-              primary: true,
-              render: datum => datum.id.slice(datum.id.length - 5),
-              pin: ['xsmall', 'small'].includes(size),
-            },
-            ...columns,
-          ]}
+          columns={columns}
           fill
           // onClickRow={({ datum }) => handleClickRow(datum)}
           pin
