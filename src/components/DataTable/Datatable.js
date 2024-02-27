@@ -6,7 +6,6 @@ import {
   DataTable,
   Heading,
   Text,
-  ResponsiveContext,
 } from 'grommet';
 
 const data = [
@@ -110,7 +109,6 @@ const columns = [
 
 // designSystemDemo is used for DS site only, can be removed in production.
 export const DataTableExample = ({ designSystemDemo }) => {
-  const size = React.useContext(ResponsiveContext);
 
   return (
     <>
