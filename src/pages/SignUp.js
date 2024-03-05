@@ -168,7 +168,7 @@ export const SignUp = () => {
                 type="password"
               />
             </FormField>
-            <FormField htmlFor="terms-and-privacy-simple" name="termsAndPrivacy">
+            <FormField htmlFor="terms-and-privacy-simple" name="termsAndPrivacy" required={{ indicator: true }}>
               <CheckBox
                 id="terms-and-privacy-simple"
                 name="termsAndPrivacy"
