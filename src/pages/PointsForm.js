@@ -2,9 +2,8 @@
 
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { firestore } from '../index.js';
+import { auth, firestore } from '../firebase_config.js';
 import { doc, setDoc, updateDoc, getDoc } from 'firebase/firestore'
-import { getAuth } from "firebase/auth";
 
 import {
   Box,
@@ -43,7 +42,6 @@ export const PointsForm = () => {
 
   const [formValues, setFormValues] = React.useState(initialPointsData);
   const navigate = useNavigate()
-  const auth = getAuth();
 
   const submitPoints = async () => {
     console.log('Points form submitted');

@@ -16,7 +16,8 @@ import {
 import { Close, Next, CircleAlert } from 'grommet-icons';
 import { emailValidation } from '../components/Form/FormValidation';
 import { hpe } from 'grommet-theme-hpe';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase_config"
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 
 const ResetPassword = ({ closeLayer, email }) => {
@@ -96,7 +97,6 @@ export const SignInExample = () => {
 
   // eslint-disable-next-line no-unused-vars
   const onSubmit = ({ value, touched }) => {
-    const auth = getAuth();
     signInWithEmailAndPassword(auth, value.email, value.password)
       .then(() => {
         navigate("/")

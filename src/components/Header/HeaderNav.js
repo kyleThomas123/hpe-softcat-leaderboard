@@ -10,14 +10,14 @@ import {
   Text,
 } from 'grommet';
 import { HelpOption, HomeRounded, User } from 'grommet-icons';
-import { getAuth, signOut } from "firebase/auth";
+import { auth } from "../../firebase_config"
+import { signOut } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 
 
 
 export const HeaderNav = () => {
   const size = useContext(ResponsiveContext);
-  const auth = getAuth();
   const user = auth.currentUser;
   const [open, setOpen] = useState();
   const navigate = useNavigate();
@@ -68,7 +68,6 @@ export const TextEmphasis = ({ ...rest }) => {
 
 
 const UserDetails = () => {
-  const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
 
