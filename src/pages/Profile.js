@@ -1,13 +1,12 @@
 import React from 'react';
 import { PageHeader } from 'grommet';
 import { Box } from 'grommet';
-import { getAuth } from "firebase/auth";
+import { auth } from "../firebase_config";
 import { useNavigate } from "react-router-dom";
 import { ProfilePointsSummary } from '../components/ProfilePoints/ProfilePointsSummary';
 import { ProfileDataTable } from '../components/ProfilePoints/ProfileDataTable';
 
 export const Profile = () => {
-  const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
   if (user.displayName){
