@@ -44,6 +44,7 @@ export const PointsForm = () => {
   const navigate = useNavigate()
 
   const submitPoints = async () => {
+    setupFirebase()
     console.log('Points form submitted');
     let isKeyUnique = false;
     let randkey = createRandomString(20);

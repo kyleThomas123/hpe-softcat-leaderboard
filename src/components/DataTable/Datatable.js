@@ -5,86 +5,110 @@ import {
   Box,
   DataTable,
   Heading,
-  Text,
 } from 'grommet';
+import { doc, getDoc, setDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { setupFirebase } from '../../index.js';
 
-const data = [
+var data1 = [
+  {PointTotal: 20, DisplayName: 'Kyle', UserID: 'hSpWweSiKQWEvdoMKP39vshHE712'},
   {
-    poolName: 'Kyle',
-    groupName: 'Asup',
-    points: 12341,
+    DisplayName: 'Jane Smith',
+    UserID: 'kxWMhtHVlpcvQGTv0QjXk0V7X4n1',
+    PointTotal: 2,
   },
   {
-    poolName: 'Jack',
-    groupName: 'Dev',
-    points: 3523,
+    DisplayName: 'Lee',
+    UserID: '6jt7qau1IXODeWEezeZF58YtG3U2',
+    PointTotal: 15,
   },
   {
-    poolName: 'Tom',
-    groupName: 'Dev',
-    points: 94748,
+    DisplayName: 'Ben',
+    UserID: 'iL6UDR2PyQZ9pqwY0xDNdiGuHn62',
+    PointTotal: 19,
   },
   {
-    poolName: 'Ben',
-    groupName: 'Asup',
-    points: 1,
+    DisplayName: 'Alex',
+    UserID: '8EaEmTEmwOfFGlGBdNPBvIDT2G12',
+    PointTotal: 1,
   },
   {
-    poolName: 'Alex',
-    groupName: 'Dev',
-    points: 124454,
+    DisplayName: 'Zac',
+    UserID: 'rKT9HILOHtU3vTBkfzWIOzBrVEB2',
+    PointTotal: 8,
   },
   {
-    poolName: 'Sacha',
-    groupName: 'Asup',
-    points: 9393,
+    DisplayName: 'Callum',
+    UserID: 'nrE3sybgR8YmygL10CGyv1Wy7h12',
+    PointTotal: 7,
   },
   {
-    poolName: 'Luke',
-    groupName: 'Dev',
-    points: 1010,
+    DisplayName: 'Hiji',
+    UserID: '0q2XCe1OKlhOXfaBo5Hp6xf3eAU2',
+    PointTotal: 13,
   },
   {
-    poolName: 'San',
-    groupName: 'Dev',
-    points: 1616,
+    DisplayName: 'Progue',
+    UserID: 'FVeWrGizWmVKaujUDIrer5rSX9m1',
+    PointTotal: 5,
   },
   {
-    poolName: 'Lexi',
-    groupName: 'Dev',
-    points: 292,
+    DisplayName: 'Ben Barrow',
+    UserID: 'ym1Vreq9SQRdYuJ6zuaHDpP27gx2',
+    PointTotal: 20,
   },
   {
-    poolName: 'Tom',
-    groupName: 'Asup',
-    points: 2762,
-  },
-  {
-    poolName: 'Plase',
-    groupName: 'Dev',
-    points: 2672,
-  },
-  {
-    poolName: 'Vicki',
-    groupName: 'Dev',
-    points: 2652,
-  },
-  {
-    poolName: 'Tori',
-    groupName: 'Dev',
-    points: 1726,
+    DisplayName: 'Tori',
+    UserID: 'ehe5jIfz3qNpd3DxTbQaU3iF2Fj2',
+    PointTotal: 10,
   },
 ];
 
+async function fetchData() {
+  try {
+    var data = await getData();
+    console.log('Data:', data);
+    // Handle data here
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    // Handle error here
+    throw error; // Rethrow the error if needed
+  }
+}
+
+var data;
+// Call fetchData in an async context
+(async () => {
+  try {
+    data = await fetchData();
+    // Continue handling data here if needed
+  } catch (error) {
+    // Handle errors from fetchData or getData here
+  }
+})();
+
+
+async function getData() {
+  setupFirebase
+  const q = query(collection(firestore, "points"), where("PointTotal", ">", 0));
+
+  var points = [];
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    points.push({DisplayName: doc.data().DisplayName, PointTotal: doc.data().PointTotal})
+  });
+  console.log(points)
+  return points
+} 
+
 const columns = [
   {
-    property: 'poolName',
+    property: 'DisplayName',
     header: 'Name',
-    render: datum => <Text truncate>{datum.poolName}</Text>,
     primary: true,
   },
   {
-    property: 'points',
+    property: 'PointTotal',
     header: 'Points',
     units: Number,
   },
@@ -98,7 +122,7 @@ const columns = [
 //   Record was clicked:
 //   { 
 //       id: ${obj.id},
-//       poolName: ${obj.poolName}
+//       DisplayName: ${obj.DisplayName}
 //   }
   
 //   You can use onClickRow() to navigate to a record's detail
@@ -107,7 +131,6 @@ const columns = [
 //   `);
 // };
 
-// designSystemDemo is used for DS site only, can be removed in production.
 export const DataTableExample = ({ designSystemDemo }) => {
 
   return (
