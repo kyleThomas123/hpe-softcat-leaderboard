@@ -9,30 +9,17 @@ import {
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {firestore} from "../../firebase_config"
 
-async function fetchData() {
-  try {
-    var data = await getData();
-    console.log('Data:', data);
-    // Handle data here
-    return data;
-  } catch (error) {
-    console.error('Error:', error);
-    // Handle error here
-    throw error; // Rethrow the error if needed
-  }
-}
-
 var data;
 // Call fetchData in an async context
 (async () => {
   try {
-    data = await fetchData();
+    data = await getData();
     // Continue handling data here if needed
   } catch (error) {
     // Handle errors from fetchData or getData here
+    console.error('Error:', error);
   }
 })();
-
 
 async function getData() {
   const q = query(collection(firestore, "points"), where("PointTotal", ">", 0));
@@ -57,26 +44,9 @@ const columns = [
     header: 'Points',
     units: Number,
   },
-
-
 ];
 
-// const handleClickRow = obj => {
-//   // eslint-disable-next-line no-alert
-//   alert(`
-//   Record was clicked:
-//   { 
-//       id: ${obj.id},
-//       DisplayName: ${obj.DisplayName}
-//   }
-  
-//   You can use onClickRow() to navigate to a record's detail
-//   page, open a panel or modal to edit the record, or perform 
-//   other actions as you see fit.
-//   `);
-// };
-
-export const DataTableExample = ({ designSystemDemo }) => {
+export const PointsDataTable = ({ designSystemDemo }) => {
 
   return (
     <>
@@ -101,7 +71,7 @@ export const DataTableExample = ({ designSystemDemo }) => {
           fill
           // onClickRow={({ datum }) => handleClickRow(datum)}
           pin
-          sort={{ property: 'points', direction: 'desc' }}
+          sort={{ property: 'PointTotal', direction: 'desc' }}
           sortable
         />
       </Box>
@@ -109,8 +79,8 @@ export const DataTableExample = ({ designSystemDemo }) => {
   );
 };
 
-DataTableExample.propTypes = {
+PointsDataTable.propTypes = {
   designSystemDemo: PropTypes.bool,
 };
 
-export default DataTableExample
+export default PointsDataTable
