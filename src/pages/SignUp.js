@@ -24,7 +24,8 @@ import {
   passwordRulesStrong,
 } from '../components/Form/FormValidation';
 import { hpe } from 'grommet-theme-hpe';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../firebase_config"
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 
 export const SignUp = () => {
@@ -48,14 +49,11 @@ export const SignUp = () => {
     });
     setPasswordRules(adjustedPasswordRules);
   };
-
-  const auth = getAuth();
   
   // eslint-disable-next-line no-unused-vars
   const onSubmit = ({ value, touched }) => {
     createUserWithEmailAndPassword(auth, value.email, value.password)
       .then(() => {
-        const auth = getAuth();
         updateProfile(auth.currentUser, {
           displayName: value.fullName,
         })
