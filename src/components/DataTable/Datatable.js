@@ -8,59 +8,6 @@ import {
 } from 'grommet';
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {firestore} from "../../firebase_config"
-var data1 = [
-  {PointTotal: 20, DisplayName: 'Kyle', UserID: 'hSpWweSiKQWEvdoMKP39vshHE712'},
-  {
-    DisplayName: 'Jane Smith',
-    UserID: 'kxWMhtHVlpcvQGTv0QjXk0V7X4n1',
-    PointTotal: 2,
-  },
-  {
-    DisplayName: 'Lee',
-    UserID: '6jt7qau1IXODeWEezeZF58YtG3U2',
-    PointTotal: 15,
-  },
-  {
-    DisplayName: 'Ben',
-    UserID: 'iL6UDR2PyQZ9pqwY0xDNdiGuHn62',
-    PointTotal: 19,
-  },
-  {
-    DisplayName: 'Alex',
-    UserID: '8EaEmTEmwOfFGlGBdNPBvIDT2G12',
-    PointTotal: 1,
-  },
-  {
-    DisplayName: 'Zac',
-    UserID: 'rKT9HILOHtU3vTBkfzWIOzBrVEB2',
-    PointTotal: 8,
-  },
-  {
-    DisplayName: 'Callum',
-    UserID: 'nrE3sybgR8YmygL10CGyv1Wy7h12',
-    PointTotal: 7,
-  },
-  {
-    DisplayName: 'Hiji',
-    UserID: '0q2XCe1OKlhOXfaBo5Hp6xf3eAU2',
-    PointTotal: 13,
-  },
-  {
-    DisplayName: 'Progue',
-    UserID: 'FVeWrGizWmVKaujUDIrer5rSX9m1',
-    PointTotal: 5,
-  },
-  {
-    DisplayName: 'Ben Barrow',
-    UserID: 'ym1Vreq9SQRdYuJ6zuaHDpP27gx2',
-    PointTotal: 20,
-  },
-  {
-    DisplayName: 'Tori',
-    UserID: 'ehe5jIfz3qNpd3DxTbQaU3iF2Fj2',
-    PointTotal: 10,
-  },
-];
 
 async function fetchData() {
   try {
