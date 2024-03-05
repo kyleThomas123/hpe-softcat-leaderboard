@@ -6,7 +6,6 @@ import Layout from "./pages/Layout";
 import Guides from "./pages/guides";
 import LeaderBoard from "./pages/LeaderBoard";
 import NoPage from "./pages/NoPage";
-import Guides from "./pages/guides";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
@@ -22,7 +21,7 @@ export default function App() {
           <Route path="/Guides" element={<Guides />} />
           <Route path="/LeaderBoard" element={<LeaderBoard />} />
           <Route path="/Profile" element={<Profile />} />
-            <Route path="/PointsForm" element={<PointsForm />} />
+          <Route path="/PointsForm" element={<PointsForm />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />
