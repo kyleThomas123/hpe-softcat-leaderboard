@@ -5,110 +5,48 @@ import {
   Box,
   DataTable,
   Heading,
-  Text,
 } from 'grommet';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import {firestore} from "../../firebase_config"
 
-const data = [
-  {
-    poolName: 'Kyle',
-    groupName: 'Asup',
-    points: 12341,
-  },
-  {
-    poolName: 'Jack',
-    groupName: 'Dev',
-    points: 3523,
-  },
-  {
-    poolName: 'Tom',
-    groupName: 'Dev',
-    points: 94748,
-  },
-  {
-    poolName: 'Ben',
-    groupName: 'Asup',
-    points: 1,
-  },
-  {
-    poolName: 'Alex',
-    groupName: 'Dev',
-    points: 124454,
-  },
-  {
-    poolName: 'Sacha',
-    groupName: 'Asup',
-    points: 9393,
-  },
-  {
-    poolName: 'Luke',
-    groupName: 'Dev',
-    points: 1010,
-  },
-  {
-    poolName: 'San',
-    groupName: 'Dev',
-    points: 1616,
-  },
-  {
-    poolName: 'Lexi',
-    groupName: 'Dev',
-    points: 292,
-  },
-  {
-    poolName: 'Tom',
-    groupName: 'Asup',
-    points: 2762,
-  },
-  {
-    poolName: 'Plase',
-    groupName: 'Dev',
-    points: 2672,
-  },
-  {
-    poolName: 'Vicki',
-    groupName: 'Dev',
-    points: 2652,
-  },
-  {
-    poolName: 'Tori',
-    groupName: 'Dev',
-    points: 1726,
-  },
-];
+var data;
+// Call fetchData in an async context
+(async () => {
+  try {
+    data = await getData();
+    // Continue handling data here if needed
+  } catch (error) {
+    // Handle errors from fetchData or getData here
+    console.error('Error:', error);
+  }
+})();
+
+async function getData() {
+  const q = query(collection(firestore, "points"), where("PointTotal", ">", 0));
+
+  var points = [];
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    points.push({DisplayName: doc.data().DisplayName, PointTotal: doc.data().PointTotal})
+  });
+  console.log(points)
+  return points
+} 
 
 const columns = [
   {
-    property: 'poolName',
+    property: 'DisplayName',
     header: 'Name',
-    render: datum => <Text truncate>{datum.poolName}</Text>,
     primary: true,
   },
   {
-    property: 'points',
+    property: 'PointTotal',
     header: 'Points',
     units: Number,
   },
-
-
 ];
 
-// const handleClickRow = obj => {
-//   // eslint-disable-next-line no-alert
-//   alert(`
-//   Record was clicked:
-//   { 
-//       id: ${obj.id},
-//       poolName: ${obj.poolName}
-//   }
-  
-//   You can use onClickRow() to navigate to a record's detail
-//   page, open a panel or modal to edit the record, or perform 
-//   other actions as you see fit.
-//   `);
-// };
-
-// designSystemDemo is used for DS site only, can be removed in production.
-export const DataTableExample = ({ designSystemDemo }) => {
+export const PointsDataTable = ({ designSystemDemo }) => {
 
   return (
     <>
@@ -133,7 +71,7 @@ export const DataTableExample = ({ designSystemDemo }) => {
           fill
           // onClickRow={({ datum }) => handleClickRow(datum)}
           pin
-          sort={{ property: 'points', direction: 'desc' }}
+          sort={{ property: 'PointTotal', direction: 'desc' }}
           sortable
         />
       </Box>
@@ -141,8 +79,8 @@ export const DataTableExample = ({ designSystemDemo }) => {
   );
 };
 
-DataTableExample.propTypes = {
+PointsDataTable.propTypes = {
   designSystemDemo: PropTypes.bool,
 };
 
-export default DataTableExample
+export default PointsDataTable
