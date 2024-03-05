@@ -2,7 +2,7 @@ import React, { useContext} from 'react';
 import { Box, ResponsiveContext} from 'grommet';
 import { DashboardGrid } from '../components/Dashboard/DashboardGrid';
 import { Greeting } from '../components/Data/Greeting';
-import { getAuth } from "firebase/auth";
+import { auth } from "../firebase_config";
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const size = useContext(ResponsiveContext);
   const navigate = useNavigate();
-  const auth = getAuth();
   const user = auth.currentUser;
 
   if (user) {

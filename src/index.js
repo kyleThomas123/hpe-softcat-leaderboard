@@ -11,11 +11,6 @@ import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import PointsForm from "./pages/PointsForm";
 import reportWebVitals from './reportWebVitals';
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore'
-import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
 
 export default function App() {
   return (
@@ -42,35 +37,6 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBEArowSS-HRNf2WdVqrz967p9Br0-i2BA",
-  authDomain: "softcatleaderboard.firebaseapp.com",
-  projectId: "softcatleaderboard",
-  storageBucket: "softcatleaderboard.appspot.com",
-  messagingSenderId: "385195349354",
-  appId: "1:385195349354:web:02a7729acdee798edd4113",
-  measurementId: "G-0701CNK6XT",
-  databaseURL: "https://softcatleaderboard-default-rtdb.europe-west1.firebasedatabase.app/"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line
-const auth = getAuth(app);
-// eslint-disable-next-line
-const database = getDatabase(app);
-// eslint-disable-next-line
-const analytics = getAnalytics(app);
-// Grab the firestore for other pages
-initializeApp(firebaseConfig);
-export const firestore = getFirestore();
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

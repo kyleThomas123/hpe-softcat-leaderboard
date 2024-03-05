@@ -1,10 +1,9 @@
 import React from 'react';
 import { PageHeader } from 'grommet';
-import { getAuth } from "firebase/auth";
+import { auth } from "../../firebase_config";
 import { useNavigate } from "react-router-dom";
 
 export const Greeting = () => {
-  const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
   if (user.displayName){
