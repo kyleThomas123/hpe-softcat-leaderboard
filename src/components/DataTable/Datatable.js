@@ -6,9 +6,8 @@ import {
   DataTable,
   Heading,
 } from 'grommet';
-import { doc, getDoc, setDoc, collection, query, where, getDocs } from "firebase/firestore";
-import { setupFirebase } from '../../index.js';
-
+import { collection, query, where, getDocs } from "firebase/firestore";
+import {firestore} from "../../firebase_config"
 var data1 = [
   {PointTotal: 20, DisplayName: 'Kyle', UserID: 'hSpWweSiKQWEvdoMKP39vshHE712'},
   {
@@ -89,7 +88,6 @@ var data;
 
 
 async function getData() {
-  setupFirebase
   const q = query(collection(firestore, "points"), where("PointTotal", ">", 0));
 
   var points = [];
