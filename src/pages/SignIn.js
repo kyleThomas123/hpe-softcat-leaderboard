@@ -1,6 +1,5 @@
 // SignIn.js
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import {
   Box,
   Button,
@@ -10,79 +9,16 @@ import {
   Header,
   Heading,
   ResponsiveContext,
+  Spinner,
   Text,
   TextInput,
 } from 'grommet';
-import { Close, Next, CircleAlert } from 'grommet-icons';
+import { Next, CircleAlert } from 'grommet-icons';
 import { emailValidation } from '../components/Form/FormValidation';
 import { hpe } from 'grommet-theme-hpe';
 import { auth } from "../firebase_config"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-
-const ResetPassword = ({ closeLayer, email }) => {
-  const [formValues, setFormValues] = React.useState({ resetEmail: email });
-
-    // eslint-disable-next-line no-unused-vars
-    const onSubmit = ({ value, touched }) => {
-      // Your password reset logic here
-      // Display success status
-      closeLayer();
-    };
-
-  return (
-    <>
-      <Box
-        direction="row"
-        justify="end"
-        pad={{ horizontal: 'small', top: 'small' }}
-      >
-        <Button
-          a11yTitle="Close reset password form"
-          icon={<Close />}
-          onClick={closeLayer}
-        />
-      </Box>
-      <Box
-        gap="medium"
-        margin={{ horizontal: 'xlarge', bottom: 'xlarge', top: 'large' }}
-        width="medium"
-      >
-        <Heading level={2} margin="none">
-          Reset Password
-        </Heading>
-        <Form
-          validate="blur"
-          value={formValues}
-          onChange={setFormValues}
-          onSubmit={({ value, touched }) => onSubmit({ value, touched })}
-          method="post"
-        >
-          <Box gap="medium">
-            <Text>
-              An email to reset your password will be sent to the following
-              address:
-            </Text>
-            <FormField
-              label="Email"
-              htmlFor="resetEmail"
-              name="resetEmail"
-              validate={emailValidation}
-            >
-              <TextInput
-                id="resetEmail"
-                name="resetEmail"
-                type="email"
-                placeholder="your.email@company.com"
-              />
-            </FormField>
-            <Button label="Send password reset" primary type="submit" />
-          </Box>
-        </Form>
-      </Box>
-    </>
-  );
-};
 
 export const SignInExample = () => {
   const [formValues, setFormValues] = React.useState({
@@ -93,21 +29,21 @@ export const SignInExample = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [credentialError, setCredentialError] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
 
   // eslint-disable-next-line no-unused-vars
-  const onSubmit = ({ value, touched }) => {
-    signInWithEmailAndPassword(auth, value.email, value.password)
-      .then(() => {
-        navigate("/")
-      })
-      .catch((error) => {
-        // eslint-disable-next-line
-        const errorCode = error.code;
-        // eslint-disable-next-line
-        const errorMessage = error.message;
-        setCredentialError(true);
-      });
+  const onSubmit = async ({ value }) => {
+    try {
+      setLoading(true);
+      await signInWithEmailAndPassword(auth, value.email, value.password);
+      navigate('/');
+    } catch (error) {
+      console.error('Error:', error.code, error.message);
+      setCredentialError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -184,6 +120,15 @@ export const SignInExample = () => {
                 <Text size="xsmall">Invalid credentials.</Text>
                 </Box>
             )}
+            {loading && (
+              <Box
+                animation="fadeIn"
+                align="center"
+                margin={{ top: 'medium', bottom: 'medium' }}
+              >
+                <Spinner />
+              </Box>
+            )}
             <Box
                 align={!['xsmall', 'small'].includes(size) ? 'start' : undefined}
                 margin={{ top: 'medium', bottom: 'small' }}
@@ -202,11 +147,6 @@ export const SignInExample = () => {
       </Box>
     </Grommet>
   );
-};
-
-ResetPassword.propTypes = {
-  closeLayer: PropTypes.func,
-  email: PropTypes.string,
 };
 
 export default SignInExample

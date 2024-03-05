@@ -12,6 +12,7 @@ import {
   Header,
   Heading,
   MaskedInput,
+  Spinner,
   Text,
   TextInput,
   ResponsiveContext,
@@ -36,6 +37,7 @@ export const SignUp = () => {
     password: '',
   });
   const [passwordRules, setPasswordRules] = React.useState(passwordRulesStrong);
+  const [loading, setLoading] = React.useState(false);
   const size = useContext(ResponsiveContext);
   const navigate = useNavigate();
 
@@ -51,19 +53,24 @@ export const SignUp = () => {
   };
   
   // eslint-disable-next-line no-unused-vars
-  const onSubmit = ({ value, touched }) => {
-    createUserWithEmailAndPassword(auth, value.email, value.password)
-      .then(() => {
-        updateProfile(auth.currentUser, {
-          displayName: value.fullName,
-        })
-        navigate("/")
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
+  const onSubmit = async ({ value }) => {
+    try {
+      setLoading(true);
+
+      // Create user
+      await createUserWithEmailAndPassword(auth, value.email, value.password);
+
+      // Update user profile
+      await updateProfile(auth.currentUser, {
+        displayName: value.fullName,
       });
+
+      navigate('/');
+    } catch (error) {
+      console.error('Error:', error.code, error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -190,6 +197,15 @@ export const SignUp = () => {
                 }
               />
             </FormField>
+            {loading && (
+              <Box
+                animation="fadeIn"
+                align="center"
+                margin={{ top: 'medium', bottom: 'medium' }}
+              >
+                <Spinner />
+              </Box>
+            )}
             <Box
               align={!['xsmall', 'small'].includes(size) ? 'start' : undefined}
               margin={{ top: 'medium', bottom: 'small' }}
