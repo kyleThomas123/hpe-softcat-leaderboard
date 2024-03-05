@@ -31,7 +31,7 @@ import { Link, useNavigate } from "react-router-dom";
 export const SignUp = () => {
   
   const [formValues, setFormValues] = React.useState({
-    email: 'jane.smith@hpe.com',
+    email: '',
     fullName: '',
     password: '',
   });
@@ -104,7 +104,8 @@ export const SignUp = () => {
               htmlFor="email-sign-up-simple"
               name="email"
               validate={emailValidation}
-              required={{ indicator: false }}
+              required={{ indicator: true }}
+              placeholder="jane.smith@hpe.com"
             >
               <MaskedInput
                 id="email-sign-up-simple"
@@ -117,7 +118,7 @@ export const SignUp = () => {
               label="Full name"
               htmlFor="fullName-sign-up-simple"
               name="fullName"
-              required={{ indicator: false }}
+              required={{ indicator: true }}
             >
               <TextInput
                 id="fullName-sign-up-simple"
@@ -126,7 +127,7 @@ export const SignUp = () => {
               />
             </FormField>
             <FormField
-              required={{ indicator: false }}
+              required={{ indicator: true }}
               label="Password"
               validate={passwordRequirements}
               htmlFor="password-sign-up-simple"
@@ -165,7 +166,7 @@ export const SignUp = () => {
                 type="password"
               />
             </FormField>
-            <FormField htmlFor="terms-and-privacy-simple" name="termsAndPrivacy">
+            <FormField htmlFor="terms-and-privacy-simple" name="termsAndPrivacy" required={{ indicator: true }}>
               <CheckBox
                 id="terms-and-privacy-simple"
                 name="termsAndPrivacy"

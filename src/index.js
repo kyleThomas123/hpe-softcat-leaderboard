@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Layout from "./pages/Layout";
+import Guides from "./pages/guides";
 import LeaderBoard from "./pages/LeaderBoard";
-import PointsForm from "./pages/PointsForm";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
 import NoPage from "./pages/NoPage";
 import Guides from "./pages/guides";
-
-
-
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
+import PointsForm from "./pages/PointsForm";
 import reportWebVitals from './reportWebVitals';
 
 export default function App() {
@@ -20,8 +19,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" index element={<Home />} />
-          <Route path="/LeaderBoard" element={<LeaderBoard />} />
           <Route path="/Guides" element={<Guides />} />
+          <Route path="/LeaderBoard" element={<LeaderBoard />} />
+          <Route path="/Profile" element={<Profile />} />
+            <Route path="/PointsForm" element={<PointsForm />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />
