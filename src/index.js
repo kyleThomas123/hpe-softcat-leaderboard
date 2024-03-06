@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/Guides" element={<Guides />} />
           <Route path="/LeaderBoard" element={<LeaderBoard />} />
           <Route path="/Profile" element={<Profile />} />
-            <Route path="/PointsForm" element={<PointsForm />} />
+          <Route path="/PointsForm" element={<PointsForm />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="*" element={<NoPage />} />

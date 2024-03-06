@@ -31,7 +31,7 @@ async function getData() {
   });
   console.log(points)
   return points
-} 
+}
 
 const columns = [
   {
