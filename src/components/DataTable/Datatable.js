@@ -9,6 +9,18 @@ import {
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {firestore} from "../../firebase_config"
 
+export function updateLeaderboard() {
+  (async () => {
+    try {
+      data = await getData();
+      // Continue handling data here if needed
+    } catch (error) {
+      // Handle errors from fetchData or getData here
+      console.error('Error:', error);
+    }
+  })();
+};
+
 var data;
 // Call fetchData in an async context
 (async () => {
@@ -31,7 +43,7 @@ async function getData() {
   });
   console.log(points)
   return points
-} 
+}
 
 const columns = [
   {
