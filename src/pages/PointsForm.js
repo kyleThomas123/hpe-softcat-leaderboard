@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, firestore } from '../firebase_config.js';
+import { updateLeaderboard } from '../components/DataTable/Datatable.js'
 import { doc, setDoc, updateDoc, getDoc } from 'firebase/firestore'
 
 import {
@@ -143,7 +144,8 @@ export const PointsForm = () => {
       };
       console.log('Points form uploaded to leaderboard');
 
-      // Return to homepage
+      // Return to homepage and refresh
+      updateLeaderboard();
       navigate("/");
     } catch (error) {
       console.error('Error adding document: ', error);
