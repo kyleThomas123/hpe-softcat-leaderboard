@@ -21,7 +21,7 @@ export const Guides = ({ ...rest }) => {
             <AccordionPanel label={<Heading level={2}>Adding Your Sales</Heading>}>
                 <Box pad={pad}>
                     <Text>
-                    Navigate to the "Submit Sales" section to input your sales data. Here, you can enter relevant details such as the OPE, the account name, and the business unit. As you submit each sale, our system will automatically convert the sales data into points, reflecting your contribution to the overall success of the team.
+                    From the dashbaord, navigate to the "Submit Sales" section to input your sales data. Here, you can enter relevant details such as the OPE, the account name, and the business unit. As you submit each sale, our system will automatically convert the sales data into points, reflecting your contribution to the overall success of the team.
                     </Text>
                 </Box>
             </AccordionPanel>
