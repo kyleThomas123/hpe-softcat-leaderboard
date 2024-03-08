@@ -9,7 +9,7 @@ import {
   ResponsiveContext,
   Text,
 } from 'grommet';
-import { AddCircle, HelpOption, HomeRounded, User } from 'grommet-icons';
+import { AddCircle, HelpOption, HomeRounded, User, BladesVertical } from 'grommet-icons';
 import { auth } from "../../firebase_config"
 import { signOut } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
@@ -28,6 +28,7 @@ export const HeaderNav = () => {
         <>
           <Link to="/"><Button icon={<HomeRounded />} a11yTitle="Home" title="Home" /></Link>
           <Link to="/PointsForm"><Button icon={<AddCircle />} a11yTitle="Submit Sales" title="Submit Sales" /></Link>
+          <Link to="/Leaderboard"><Button icon={<BladesVertical />} a11yTitle="Home" title="Home" /></Link>
           <Link to="/Guides"><Button icon={<HelpOption />} a11yTitle="Help" title="Help" /></Link>
         </>
       )}
