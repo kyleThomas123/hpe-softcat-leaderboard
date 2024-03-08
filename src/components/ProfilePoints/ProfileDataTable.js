@@ -1,70 +1,95 @@
-// ProfileDataTable.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Box,
-  DataTable,
-  Heading,
+Box,
+Card,
+CardBody,
+CardHeader,
+DataTable,
+Heading,
+NameValueList,
+NameValuePair,
 } from 'grommet';
+import { auth, firestore } from '../../firebase_config.js';
+import { doc, getDoc } from 'firebase/firestore';
 
-const data = [
-  {
-    date:'01/25/1915',
-    OPE: 'OPE-0015178673',
-    accountName: 'RockStar',
-    businessUnit: 'Compute',
-  },
-  {
-    date:'11/03/2020',
-    OPE: 'OPE-0015702962',
-    accountName: 'Emirates',
-    businessUnit: 'Storage',
-  },
-  {
-    date:'08/06/1991',
-    OPE: 'OPE-0016297847',
-    accountName: 'University of Reading',
-    businessUnit: 'HPC',
-  },
-  {
-    date:'15/02/2021',
-    OPE: 'OPE-0013171362',
-    accountName: 'Redbull',
-    businessUnit: 'Compute',
-  },
-  {
-    date:'01/09/2023',
-    OPE: 'OPE-0013501024',
-    accountName: 'Disney',
-    businessUnit: 'AI',
-  },
-  {
-    date:'27/12/2023',
-    OPE: 'OPE-0008872237',
-    accountName: 'RockStar',
-    businessUnit: 'Storage',
-  },
-  {
-    date:'11/08/2022',
-    OPE: 'OPE-0015222558',
-    accountName: 'RockStar',
-    businessUnit: 'AI',
-  },
+export const ProfilePointsSummary = ({ totalSales, totalPoints }) => (
+<Card width="medium">
+  <CardHeader gap="none" align="start" direction="column">
+    {/* adjust level according to the correct 
+    semantic heading level for your layout */}
+    <Heading margin="none" level={2}>
+      Points
+    </Heading>
+  </CardHeader>
+  <CardBody>
+    <NameValueList>
+      <NameValuePair name="Total Sales">{totalSales}</NameValuePair>
+      <NameValuePair name="Total Points">{totalPoints}</NameValuePair>
+    </NameValueList>
+  </CardBody>
+</Card>
+);
 
-];
+ProfilePointsSummary.propTypes = {
+  totalSales: PropTypes.number.isRequired,
+  totalPoints: PropTypes.number.isRequired,
+};
 
-const columns = [
-    { property: 'date', header: 'Date'},
+
+export const ProfileDataTable = ({ designSystemDemo }) => {
+  const [sales, setSales] = useState([]);
+  const [totalSales, setTotalSales] = useState(0);
+  const [totalPoints, setTotalPoints] = useState(0);
+
+  const fetchData = async () => {
+    try {
+      if (auth.currentUser) {
+        const docRef = doc(firestore, 'sales-forms', auth.currentUser.uid);
+        const docSnapshot = await getDoc(docRef);
+        const docdata = docSnapshot.data();
+
+        if (docdata) {
+          const data = Object.keys(docdata).map((key) => {
+            const doc = docdata[key];
+            return {
+              date: doc.date,
+              OPE: doc.OPE,
+              accountName: doc.accountName,
+              businessUnit: doc.businessUnit,
+              points: doc.points,
+            };
+          });
+
+          const newTotalPoints = data.reduce((acc, entry) => acc + entry.points, 0);
+          const newTotalSales = data.length;
+
+          setSales(data);
+          setTotalPoints(newTotalPoints);
+          setTotalSales(newTotalSales);
+        }
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); // The empty dependency array [] ensures that the effect runs only once on mount
+
+  const columns = [
+    { property: 'date', header: 'Date' },
     { property: 'OPE', header: 'OPE', primary: true },
     { property: 'accountName', header: 'Account Name' },
-    { property: 'businessUnit', header: 'Business Unit'},
+    { property: 'businessUnit', header: 'Business Unit' },
+    { property: 'points', header: 'Points' },
   ];
-
-// designSystemDemo is used for DS site only, can be removed in production.
-export const ProfileDataTable = ({ designSystemDemo }) => {
 
   return (
     <>
+      <ProfilePointsSummary totalSales={totalSales} totalPoints={totalPoints} ></ProfilePointsSummary>
+      <br></br>
       <Heading
         id="my-sales-heading"
         level={3}
@@ -73,15 +98,12 @@ export const ProfileDataTable = ({ designSystemDemo }) => {
         My Sales
       </Heading>
       <Box
-        // Height is restricted to keep inline doc page examples more compact.
-        // In production, DataTable height should follow height guidelines.
-        // https://design-system.hpe.design/components/datatable#setting-the-height-of-a-table
         height={designSystemDemo ? undefined : 'medium'}
         overflow="auto"
       >
         <DataTable
           aria-describedby="my-sales-heading"
-          data={data}
+          data={sales}
           columns={columns}
           fill
           pin
@@ -96,4 +118,4 @@ ProfileDataTable.propTypes = {
   designSystemDemo: PropTypes.bool,
 };
 
-export default ProfileDataTable
+export default ProfileDataTable;
