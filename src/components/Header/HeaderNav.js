@@ -19,6 +19,7 @@ import { useNavigate, Link } from "react-router-dom";
 export const HeaderNav = () => {
   const size = useContext(ResponsiveContext);
   const user = auth.currentUser;
+  const navigate = useNavigate()
   const [open, setOpen] = useState();
 
   if (user) {
@@ -43,7 +44,23 @@ export const HeaderNav = () => {
         </Avatar>
       </DropButton>
     </Nav>
-  } 
+  } else {
+    <Nav align="center" direction="row" gap="small">
+    {!['xsmall', 'small'].includes(size) && (
+      <>
+        <Button icon={<HelpOption />} a11yTitle="Help" title="Help" onClick = {() => navigate("/Guides")}/>
+        <Button icon={<HomeRounded />} a11yTitle="Home" title="Home" onClick = {() => navigate("/")}/>
+      </>
+    )}
+    <Button
+      onClick={() => navigate("/SignIn")}
+    >
+      <Avatar background="dark-1">
+          <User></User>
+      </Avatar>
+    </Button>
+  </Nav>
+  }
 
 };
 

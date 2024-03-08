@@ -12,7 +12,6 @@ async function getData() {
   querySnapshot.forEach((doc) => {
     points.push({ DisplayName: doc.data().DisplayName, PointTotal: doc.data().PointTotal });
   });
-  console.log(points);
   return points;
 }
 

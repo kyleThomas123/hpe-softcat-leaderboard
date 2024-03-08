@@ -97,7 +97,6 @@ export const PointsForm = () => {
           if (!data.hasOwnProperty(randkey)) {
             isKeyUnique = true;
           } else {
-            console.log(`Key ${randkey} already exists. Generating a new one.`);
             randkey = createRandomString(20);
           }
         } else {
