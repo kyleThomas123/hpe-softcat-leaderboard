@@ -20,7 +20,6 @@ export const HeaderNav = () => {
   const size = useContext(ResponsiveContext);
   const user = auth.currentUser;
   const [open, setOpen] = useState();
-  const navigate = useNavigate();
 
   if (user) {
     return <Nav align="center" direction="row" gap="small">
