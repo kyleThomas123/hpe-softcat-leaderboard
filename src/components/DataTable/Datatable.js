@@ -40,7 +40,6 @@ export const PointsDataTable = ({ designSystemDemo }) => {
     {
       property: 'PointTotal',
       header: 'Points',
-      units: 'number',
     },
   ];
 
