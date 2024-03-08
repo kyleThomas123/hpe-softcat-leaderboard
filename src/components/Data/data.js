@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import {
   Add,
-  Ascend,
-  Support,
+  BladesVertical,
+  HelpOption,
 } from 'grommet-icons';
 
 // styled component to create custom orange button
@@ -31,14 +31,14 @@ export const data = [
     title: 'View Leaderboard',
     description:
       'View the SoftCat Reseller Leaderboard.',
-    icon: <Ascend color="green" />,
+    icon: <BladesVertical color="green" />,
   },
   {
     cta: <Link to="/Guides"><StyledButton label="Explore guides" /></Link>,
     title: 'Guides and resources',
     description:
       'Stay informed with how-to guides and points explanation.',
-    icon: <Support color="purple!" />,
+    icon: <HelpOption color="purple!" />,
   },
 
 ];
