@@ -23,7 +23,6 @@ export const HeaderNav = () => {
   const [open, setOpen] = useState();
 
   if (user) {
-    console.log("User logged in")
     return <Nav align="center" direction="row" gap="small">
       {!['xsmall', 'small'].includes(size) && (
         <>
